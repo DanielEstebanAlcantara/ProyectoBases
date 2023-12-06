@@ -5,10 +5,8 @@
 */
 
 
-use Concesionaria_PF_PRUEBA
+use CONCESIONARIA
 GO
-SELECT * FROM COCHE.SEGUNDA
-BEGIN TRAN
 
 /*
 	Registros tabla 
@@ -18,7 +16,8 @@ BEGIN TRAN
 go
 INSERT INTO EMPLEADO.DIRECCION (calle, municipio, estado, numero)
 VALUES
-    ('Ramos Milla', 'Cuauhtemoc', 'Ciudad de Mexico', '123'),
+    ('Ramos', 'Cuauhtemoc', 'Ciudad de Mexico', '123')
+/*
     ('De los toltecas', 'Benito Juarez', 'Ciudad de Mexico', '456'),
     ('Bodas de Figaro', 'Coyoacan', 'Ciudad de Mexico', '789'),
     ('Sonora', 'Miguel Hidalgo', 'Ciudad de Mexico', '101'),
@@ -38,7 +37,7 @@ VALUES
     ('Eduardo Jenner', 'Benito Juarez', 'Ciudad de Mexico', '326'),
     ('Topacio', 'Coyoacan', 'Ciudad de Mexico', '427'),
     ('Santo Tomas', 'Miguel Hidalgo', 'Ciudad de Mexico', '828');
-
+*/
 
 /*
 	Registros tabla 
@@ -48,7 +47,8 @@ VALUES
 go
 INSERT INTO EMPLEADO.EMPLEADO (fechaNacimiento, paterno, materno, nombre, fechaIngreso, sueldo, tipoEmpleado, id_Direccion)
 VALUES
-    ('1990-03-15', 'Gomez', 'Lopez', 'Juan', '2010-05-20', 35000.00, 'V', 1),
+    ('1990-03-15', 'Fernandez', 'Lopez', 'Juan', '2010-05-20', 35000.00, 'V', 1)
+	/*
     ('1985-08-22', 'Martinez', 'Ramirez', 'Ana', '2009-11-10', 42000.00, 'V', 2),
     ('1988-12-05', 'Rodriguez', 'Garcia', 'Carlos', '2012-08-15', 38000.00, 'V', 3),
     ('1992-06-18', 'Hernandez', 'Martinez', 'Laura', '2015-02-28', 30000.00, 'V', 4),
@@ -68,7 +68,7 @@ VALUES
     ('1996-08-17', 'Nunez', 'Cortes', 'Ricardo', '2018-11-18', 30000.00, 'T', 18),
     ('1981-01-25', 'Salazar', 'Mendoza', 'Gabriela', '2006-04-07', 46000.00, 'V', 19),
     ('1990-07-12', 'Castillo', 'Romero', 'Hector', '2023-04-23', 8000.00, 'M', 20);
-
+	*/
 /*
 	Registros tabla 
 	EMPLEADO.TELEFONO
@@ -77,7 +77,8 @@ VALUES
 go
 INSERT INTO EMPLEADO.TELEFONO
     VALUES
-        (5512345678, 1),
+        (5541382421, 1)
+		/*
         (5623456789, 2),
         (5545678901, 3),
         (5656789012, 4),
@@ -97,13 +98,8 @@ INSERT INTO EMPLEADO.TELEFONO
         (5541110011, 18),
         (5651000112, 19),
 		(5622334455, 20);
+		*/
 
---==============================
-SELECT 'EMPLEADOS' AS EMPLEADOS
-SELECT * FROM EMPLEADO.DIRECCION
-SELECT * FROM EMPLEADO.EMPLEADO
-SELECT * FROM EMPLEADO.TELEFONO
---==============================
 
 
 /*
@@ -127,7 +123,7 @@ GO
 /*
 Inserta Empleados cuyo tipo es 'T' dentro de tabla EMPLEADO.TECNICO
 */
-
+/*
 DECLARE @v_cantidad_empleados int = (SELECT COUNT (numEmpleado)
 FROM EMPLEADO.EMPLEADO
 where tipoEmpleado = 'T')
@@ -141,13 +137,13 @@ BEGIN
 			where t.numEmpleado is null and e.tipoEmpleado = 'T'))
 END
 GO
-
+*/
 
 
 /*
 Inserta Empleados cuyo tipo es 'M' dentro de tabla EMPLEADO.MECANICO
 */
-
+/*
 DECLARE @v_cantidad_empleados int = (SELECT COUNT (numEmpleado)
 FROM EMPLEADO.EMPLEADO
 where tipoEmpleado = 'M')
@@ -161,37 +157,32 @@ BEGIN
 			where m.numEmpleado is null and e.tipoEmpleado = 'M'))
 END
 GO
-
+*/
 /*
 	Agregando informaci�n sobre escolaridad
 */
 
+/*
 UPDATE EMPLEADO.MECANICO
 set escolaridad = 'Tecnico Bachillerato'
 where escolaridad is null
-
+*/
 
 /*
 	Registros para EMPLEADO.CURSO
 */
---DBCC CHECKIDENT ('EMPLEADO.CURSO', RESEED,0);
-GO
-INSERT INTO EMPLEADO.CURSO (Curso, numEmpleado)
-VALUES
-    ('AfinaciOn de Motores con InyecciOn ElectrOnica', 6),
-    ('Mantenimiento de Transmision Automatica', 8),
-    ('Reparacion de Sistema de Frenos Convencionales, ABS y Electronicos', 11),
-    ('Suspension y Direccion', 13),
-    ('Transmision Manual y Embrague', 17),
-    ('Mantenimiento de Transmision Automatica', 20);
+----DBCC CHECKIDENT ('EMPLEADO.CURSO', RESEED,0);
+--GO
+--INSERT INTO EMPLEADO.CURSO (Curso, numEmpleado)
+--VALUES
+--    ('AfinaciOn de Motores con InyecciOn ElectrOnica', 6),
+--    ('Mantenimiento de Transmision Automatica', 8),
+--    ('Reparacion de Sistema de Frenos Convencionales, ABS y Electronicos', 11),
+--    ('Suspension y Direccion', 13),
+--    ('Transmision Manual y Embrague', 17),
+--    ('Mantenimiento de Transmision Automatica', 20);
+--GO
 
---==============================
-SELECT * FROM EMPLEADO.AGENTE_VENTA
-SELECT * FROM EMPLEADO.TECNICO
-SELECT * FROM EMPLEADO.MECANICO
-SELECT * FROM EMPLEADO.CURSO
-
---==============================
 
 
 /*
@@ -203,7 +194,8 @@ SELECT * FROM EMPLEADO.CURSO
 go
 
 INSERT INTO AVAL.DIRECCION (calle, municipio, estado, numero)
-VALUES('Pira�a', 'Cuauhtemoc', 'Ciudad de Mexico', '3'),
+VALUES('Pirara', 'Tlahuac', 'Ciudad de Mexico', '5')
+/*
         ('Durango', 'Benito', 'Ciudad de Mexico', '46'),
         ('Hidalgo', 'Coyoacan', 'Ciudad de Mexico', '63'),
         ('Zaragoza', 'Miguel', 'Ciudad de Mexico', '15'),
@@ -223,7 +215,7 @@ VALUES('Pira�a', 'Cuauhtemoc', 'Ciudad de Mexico', '3'),
         ('Messi', 'Benito', 'Ciudad de Mexico', '10'),
         ('Portales', 'Coyoacan', 'Ciudad de Mexico', '523'),
         ('San Juan', 'Miguel', 'Ciudad de Mexico', '82');
-
+*/
 /*
 	Registros para AVAL.AVAL
 */
@@ -231,7 +223,8 @@ VALUES('Pira�a', 'Cuauhtemoc', 'Ciudad de Mexico', '3'),
 GO
 
 INSERT INTO AVAL.AVAL (curp, paterno, materno, nombre, id_Direccion)
-VALUES ('LOMA940514MDFNNSS0', 'Lopez', 'Maldonado', 'Ana', 1),
+VALUES ('LOMA940514MMCNNSS1', 'Lopez', 'Maldonado', 'Ana', 1)
+/*
         ('GARC940223HDFNNS00', 'Garcia', 'Santos', 'Carlos', 2),
         ('RODR930712MDFNNSS2', 'Rodriguez', 'Lara', 'Rosa', 3),
         ('HERN951015HDFNNS00', 'Hernandez', 'Martinez', 'Luis', 4),
@@ -251,7 +244,7 @@ VALUES ('LOMA940514MDFNNSS0', 'Lopez', 'Maldonado', 'Ana', 1),
         ('REYE931124HDFNNS10', 'Reyes', 'Gomez', 'Victor', 18),
         ('LOPE891215MDFNNS18', 'Lopez', 'Velasquez', 'Diana', 19),
         ('TORR970706HDFNNS19', 'Torres', 'Guzman', 'Alejandro', 20);
-
+		*/
 
 /*
 	Registros para AVAL.TELEFONO
@@ -260,7 +253,8 @@ VALUES ('LOMA940514MDFNNSS0', 'Lopez', 'Maldonado', 'Ana', 1),
 go
 INSERT INTO AVAL.TELEFONO(telefono, id_Aval) 
 VALUES
-        (5512345678, 1),
+        (5530792417, 1)
+		/*
         (5523456789, 2),
         (5534567890, 3),
         (5545678901, 4),
@@ -280,16 +274,9 @@ VALUES
         (5588990011, 18),
         (5599001122, 19),
         (5500112233, 20);
+		*/
 
 
---==============================
-SELECT 'AVAL' as AVAL
-SELECT * FROM AVAL.DIRECCION
-SELECT * FROM AVAL.TELEFONO
-SELECT * FROM AVAL.AVAL
-
-
---==============================
 
 
 /*
@@ -299,7 +286,8 @@ SELECT * FROM AVAL.AVAL
 GO
 INSERT INTO CLIENTE.DIRECCION (calle, municipio, estado, numero)
 VALUES
-    ('Aleta', 'Cuauhtemoc', 'Ciudad de Mexico', '2'),
+    ('Aleta', 'Cuauhtemoc', 'Ciudad de Mexico', '15')
+	/*
     ('Allende', 'Benito', 'Ciudad de Mexico', '62'),
     ('Paraiso', 'Coyoacan', 'Ciudad de Mexico', '85'),
     ('Pera', 'Miguel', 'Ciudad de Mexico', '8'),
@@ -319,8 +307,8 @@ VALUES
     ('Parka', 'Benito', 'Ciudad de Mexico', '72'),
     ('Walkirias', 'Coyoacan', 'Ciudad de Mexico', '29'),
     ('Zapo', 'Miguel', 'Ciudad de Mexico', '79'); 
-
-
+	*/
+GO
 
 
 /*
@@ -330,7 +318,8 @@ VALUES
 GO
 INSERT INTO CLIENTE.CLIENTE (paterno, materno, nombre, genero, rfc, id_Direccion, id_Aval)
 VALUES
-    ('Hernandez', 'Gutierrez', 'Laura', 'M', '1234567890123', 1, 1),
+    ('Hernandez', 'Gutierrez', 'Laura', 'M', '000A711110XXX', 1, 1)
+	/*
     ('Gomez', 'Martinez', 'Alejandro', 'H', 'GOMA891110XXX', 2, 2),
     ('Diaz', 'Sanchez', 'Isabel', 'M', 'DIAI950504XXX', 3, 3),
     ('Torres', 'Lopez', 'Ricardo', 'H', 'TORR870720XXX', 4, 4),
@@ -350,8 +339,8 @@ VALUES
     ('Ortega', 'Vega', 'Hector', 'H', 'ORVH950811XXX', 18, 18),
     ('Rojas', 'Reyes', 'Ana', 'M', 'RORA920620XXX', 19, 19),
     ('Guzman', 'Flores', 'Gabriel', 'H', 'GUGF900402XXX', 20, 20);
-
 	select * from CLIENTE.CLIENTE
+	*/
 /*
 	Registros para tabla CLIENTE.TELEFONO
 */
@@ -359,7 +348,8 @@ VALUES
 go
 INSERT INTO CLIENTE.TELEFONO (telefono, id_Cliente) 
 VALUES
-        (5533445566, 1),
+        (5540813724, 1)
+		/*
         (5544556677, 2),
         (5555667787, 3),
         (5566785899, 4),
@@ -379,7 +369,7 @@ VALUES
         (5534567890, 18),
         (5545678901, 19),
         (5556789012, 20);
-
+		*/
 /*
 	Registros para tabla CLIENTE.CORREO
 */
@@ -388,7 +378,8 @@ go
 
 INSERT INTO CLIENTE.CORREO (correo, id_Cliente)
 VALUES 
-    ('john.doe@example.com', 1),
+    ('john2.doe@example.com', 1)
+	/*
     ('jane.smith@example.com', 2),
     ('bob.jones@example.com', 3),
     ('alice.johnson@example.com', 4),
@@ -408,27 +399,20 @@ VALUES
     ('mia.clark@example.com', 18),
     ('owen.green@example.com', 19),
     ('lily.wright@example.com', 20); 
+	*/
 
---==============================
-SELECT 'CLIENTE' AS CLIENTES
-SELECT * FROM CLIENTE.DIRECCION
-SELECT * FROM CLIENTE.CLIENTE
-SELECT * FROM CLIENTE.TELEFONO
-SELECT * FROM CLIENTE.CORREO
---==============================
 
 
 /*
 	Registros tabla COCHE.COCHE
 */
 --DBCC CHECKIDENT ('COCHE.COCHE', RESEED,0);-- Resetear la PK
-go
-SELECT * FROM COCHE.COCHE WHERE matricula = 'GHI789'
-SELECT * FROM COCHE.COCHE
+
 
 INSERT INTO COCHE.COCHE (modelo, extras, matricula, tipoCoche)
 VALUES
-    ('Sedan', 'Aire', 'ABC123', 'N'),
+    ('Sedan', 'Aire', 'ABC987', 'N')
+	/*
     ('SUV', 'GPS', 'DEF456', 'S'),
     ('Compacto', 'Bluetooth', 'GHI789', 'S'),
     ('Pickup', 'Asientos de cuero', 'JKL012', 'S'),
@@ -448,11 +432,11 @@ VALUES
     ('Compacto', 'Volante multifuncion', 'ZAB234', 'N'),
     ('SUV', NULL, 'CDE567', 'N'),
     ('Pickup', 'Sistema de traccion en las cuatro ruedas', 'FGH890', 'N');
-
+	*/
 /*
 	Registros tabla COCHE.SEGUNDA
 */
-
+/*
 INSERT INTO COCHE.SEGUNDA (id_Coche, fecha, costo, id_Cliente)
 VALUES 
     (2, '2023-01-01', 50000, 5),
@@ -464,7 +448,7 @@ VALUES
     (7, '2023-07-01', 60000, 12),
     (10,'2023-08-01', 70000, 20),
     (15,'2023-09-01', 60000, 5 ),
-    (16,'2023-10-01', 45000, 17);
+    (16,'2023-10-01', 45000, 17);*/
 
 
 /*
@@ -499,11 +483,6 @@ END
 GO
 */
 
---==============================
-SELECT 'COCHES' 
-SELECT * FROM COCHE.COCHE
-SELECT * FROM COCHE.SEGUNDA
---==============================
 
 
 /*
@@ -519,67 +498,8 @@ VALUES
     ('36 MESES'),
     ('48 MESES');
 
-/*
 
-	Registros para VENTA.CREDITO
-*/
---DBCC CHECKIDENT ('VENTA.CREDITO', RESEED,0);-- Resetear la PK
-go
-INSERT INTO VENTA.CREDITO (numTarjeta, enganche, interesMensual, deuda, banco, tipoCredito, fecha)
-VALUES 
-    (6834567890123456, 25000, 18750,200000, 'Banorte', 1, '2023-01-01'),
-    (9345678901234867, 10000, 3500, 50000, 'Santander', 2, '2023-02-01'),
-    (8456789012345678, 10000, 2222, 70000, 'HSBC', 3, '2023-03-01'),
-    (0567890123456789, 10000, 1875, 80000, 'Inbursa', 4, '2023-04-01'),
-    (1678901234567890, 50000, 4583.34,500000, 'Scotiabank', 1, '2023-05-01'),
-    (5789012345678901, 10000, 2917, 60000, 'Santander', 2, '2023-06-01'),
-    (3890123456789012, 15000, 2084, 60000, 'BBVA', 3, '2023-07-01'),
-    (2901234567890123, 35000, 7917, 345000, 'Santander', 4, '2023-08-01'),
-    (1012345678901234, 10000, 7542, 80500, 'BBVA', 1, '2023-09-01'),
-    (9234567890123456, 25000, 3542, 60000, 'HSBC', 2, '2023-10-01'),
-    (7345078901234567, 40000, 10472,337000, 'Banorte', 3, '2023-11-01'),
-    (1456789012345678, 30000, 6250, 270000, 'Inbursa', 4, '2023-12-01'),
-    (1567890123456789, 10000, 3930, 37150, 'Inbursa', 1, '2024-01-01'),
-    (2678901234567890, 40000, 16350,353000, 'HSBC', 2, '2024-02-01'),
-    (8789012345678903, 10000, 2223, 80000, 'HSBC', 3, '2024-03-01');
 
-	
-	
-
-/*
-
-	Registros para VENTA.VENTA
-*/
---DBCC CHECKIDENT ('VENTA.VENTA', RESEED,0);
-INSERT INTO VENTA.VENTA (comision, fecha, Extras, CostoTotal, numEmpleado, id_Cliente, id_Coche, id_Credito)
-VALUES
-    (10000.00, '2023-01-01', 'Seguro', 225000.00, 1, 1, 1, 1),
-    (12000.50, '2023-02-01', 'GPS', 60000.00, 2, 2, 2, 2),
-    (9000.75, '2023-03-01', 'Asientos de Cuero', 80000.00, 3, 3, 3, 3),
-    (8000.20, '2023-04-01', 'Paquete de Mantenimiento', 90000.00, 4, 4, 4, 4),
-    (11000.00, '2023-05-01', 'Llantas de Invierno', 550000.00, 5, 5, 5, 5),
-    (9500.50, '2023-06-01', 'Asistencia en Carretera', 70000.00, 10, 6, 6, 6),
-    (10500.25, '2023-07-01', 'Quemacocos', 75000.00, 15, 7, 7, 7),
-    (11500.75, '2023-08-01', 'Techo Solar', 380000.00, 19, 8, 8, 8),
-    (8800.90, '2023-09-01', 'Asientos con Calefacci�n', 90500.00, 1, 9, 9, 9),
-    (13000.00, '2023-10-01', 'Sistema de Entretenimiento', 85000.00, 2, 10, 10, 10),
-    (7500.40, '2023-11-01', 'Sistema de Navegaci�n', 377000.00, 3, 11, 11, 11),
-    (10200.80, '2023-12-01', 'Seguro contra Robo', 300000.00, 4, 12, 12, 12),
-    (9400.30, '2024-01-01', 'Paquete de Servicios', 47150.00, 5, 13, 13, 13),
-    (7800.60, '2024-02-01', 'Asientos Deportivos', 393000.00, 10, 14, 14, 14),
-    (8500.00, '2024-03-01', 'Reproductor de DVD', 80000.00, 15, 15, 15, 15),
-    (12000.25, '2024-04-01', 'Seguro contra Colisiones', 90000.50, 19, 16, 16, NULL),
-    (9800.70, '2024-05-01', 'Sistema de Sonido Premium', 493500.00, 1, 17, 17, NULL),
-    (11000.90, '2024-06-01', 'Asientos El�ctricos', 554500.00, 2, 18, 18, NULL),
-    (8200.40, '2024-07-01', 'Pintura Personalizada', 412000.00, 3, 19, 19, NULL),
-    (10700.80, '2024-08-01', 'Cobertura Extendida', 539000.00, 4, 20, 20, NULL);
-
---==============================
-SELECT 'VENTAS'
-SELECT * FROM CATALOGO.CREDITO
-SELECT * FROM VENTA.CREDITO
-SELECT * FROM VENTA.VENTA
---==============================
 
 /*
 	Registros para tabla CATALOGO.REPARACION
@@ -598,7 +518,7 @@ VALUES
     ('Cambio de bacteria'),
     ('Reparacion de frenos'),
     ('Anticongelante adicional'),
-    ('Afinaci�n del motor'),
+    ('AfinaciOn del motor'),
     ('Alineacion/balanceo de llantas'),
     ('Reparacion caja de cambios'),
     ('Cambios de bujias'),
@@ -622,75 +542,12 @@ VALUES
       ('Revision de transmicion ');
 
 
-/*
-	Registros para tabla SERVICIO.SERVICIO
-*/
---DBCC CHECKIDENT ('SERVICIO.SERVICIO', RESEED,0);
-INSERT INTO SERVICIO.SERVICIO (id_Coche, id_Cliente, tipoServicio, fecha, hora, motivo, costos, estatus, numEmpleado)
-VALUES
-    (1, 1, 'R', '2023-01-01', '2023-01-01 08:00:00', 'Cambio de aceite', 300.00, 'P', 6),
-    (2, 2, 'C', '2023-01-02', '2023-01-02 09:30:00', 'Frenos', 500.00, 'P', NULL),
-    (3, 3, 'C', '2023-01-03', '2023-01-03 11:45:00', 'Servicio programado', 600.00, 'C', NULL),
-    (4, 4, 'R', '2023-01-04', '2023-01-04 14:15:00', 'Reemplazo de bateria', 1700.00, 'C', 8),
-    (5, 5, 'R', '2023-01-05', '2023-01-05 16:30:00', 'Cambio de filtros', 350.00, 'P', 11),
-    (6, 6, 'R', '2023-01-06', '2023-01-06 18:45:00', 'Reparacion de luces', 1500.00, 'E', 13),
-    (7, 7, 'R', '2023-01-07', '2023-01-07 20:00:00', 'Cambio de bujias', 300.00, 'C', 17),
-    (8, 8, 'R', '2023-01-08', '2023-01-08 22:15:00', 'Reemplazo de neum�ticos', 10000.00, 'P', 20),
-    (9, 9, 'C', '2023-01-09', '2023-01-09 05:30:00', 'Revision de Frenos', 150.00, 'P', NULL),
-    (10, 10, 'R', '2023-01-10', '2023-01-10 07:45:00', 'Reparacion de transmision', 3000.00, 'C', 6),
-    (11, 11, 'R', '2023-01-11', '2023-01-11 10:00:00', 'Cambio de aceite', 300.00, 'P', 8),
-    (12, 12, 'C', '2023-01-12', '2023-01-12 12:15:00', 'Revision frenos', 150.00, 'P', NULL),
-    (13, 13, 'R', '2023-01-13', '2023-01-13 14:30:00', 'Alineaci�n y balanceo', 300.00, 'C', 8),
-    (14, 14, 'R', '2023-01-14', '2023-01-14 16:45:00', 'Reemplazo de bateria', 1700.00, 'C', 11),
-    (15, 15, 'R', '2023-01-15', '2023-01-15 19:00:00', 'Cambio de filtros', 350.00, 'P', 13),
-    (16, 16, 'R', '2023-01-16', '2023-01-16 21:15:00', 'Reparacion de luces', 1500.00, 'E', 17),
-    (17, 17, 'R', '2023-01-17', '2023-01-17 23:30:00', 'Cambio de bujias', 300.00, 'C', 20),
-    (18, 18, 'R', '2023-01-18', '2023-01-18 02:45:00', 'Reemplazo de neumaticos', 10000.00, 'P', 6),
-    (19, 19, 'R', '2023-01-19', '2023-01-19 05:00:00', 'Cambio de aceite', 300.00, 'P', 8),
-    (20, 20, 'R', '2023-01-20', '2023-01-20 07:15:00', 'Reparacion de frenos', 700.00, 'P', 11);
-
-
-
-/*
-
-	Registros para tabla SERVICIO.REPARACION
-*/
-
-INSERT INTO SERVICIO.REPARACION (id_Servicio, id_Reparacion)
-VALUES
-    (1, 4),
-    (4, 18),
-    (5, 5),
-    (6, 19),
-    (7, 15),
-    (8, 16),
-    (10, 14),
-    (11, 4),
-    (13, 13),
-    (14, 18),
-    (15, 3),
-    (16, 19),
-    (17, 15),
-    (18, 16),
-    (19, 4),
-    (20, 10);
-
-/*
-	Registros para tabla SERVICIO.REVISION
-*/
-INSERT INTO SERVICIO.REVISION (id_Servicio, fechaPlaneacion, fechaRealizacion, id_Revision, numEmpleado)
-VALUES
-(2, '2023-01-01 10:00:00', '2023-01-01 12:00:00',  5, 7),
-(3, '2023-01-02 11:30:00', '2023-01-02 14:00:00', 3, 12),
-(9, '2023-01-03 13:45:00', '2023-01-03 16:30:00',  5, 14),
-(12, '2023-01-04 16:15:00', '2023-01-04 18:45:00', 5, 18);
 
 
 
 /*
 	REGISTROS PARA COCHES HECHO CON PROCEDIMIENTOS Y EXISTENCIA DE TRIGGERS
 */
-
 
 
 --REGISTROS DE CLIENTES
@@ -700,14 +557,14 @@ EXEC CLIENTE.PR_REGISTROCLIENTE
     @P_materno_CLIENTE = 'Gutierrez',
     @P_nombre_CLIENTE = 'Laura',
     @P_genero_CLIENTE = 'M',
-    @P_rfc_CLIENTE = 'HERG920215XXX',
+    @P_rfc_CLIENTE = 'HTOT920215PPP',
     @P_calle_CLIENTE = 'Aleta',
     @P_municipio_CLIENTE = 'Cuauhtemoc',
     @P_estado_CLIENTE = 'Ciudad de Mexico',
     @P_numero_CLIENTE = '2',
-    @P_telefono_CLIENTE =5533445566,
-    @P_correo_Cliente = 'laura.hernandez@example.com',
-    @P_Curp_AVAL = 'LOMA940514MDFNpSS0',
+    @P_telefono_CLIENTE =0123456786,
+    @P_correo_Cliente = 'laua.h@example.com',
+    @P_Curp_AVAL = 'LOMX940514MDFNpSS0',
     @P_paterno_AVAL = 'Lopez',
     @P_materno_AVAL = 'Maldonado',
     @P_nombre_AVAL = 'Ana',
@@ -715,8 +572,7 @@ EXEC CLIENTE.PR_REGISTROCLIENTE
     @P_municipio_AVAL = 'Cuauhtemoc',
     @P_estado_AVAL = 'Ciudad de Mexico',
     @P_numero_AVAL = '3',
-    @P_telefono_AVAL =5512345678;
-
+    @P_telefono_AVAL =0123456783;
 -- Bloque 2
 EXEC CLIENTE.PR_REGISTROCLIENTE
     @P_paterno_CLIENTE = 'Gomez',
@@ -1612,7 +1468,7 @@ EXECUTE COCHE.REGISTRAR_COCHE 'A3', 'Sistema de sonido premium', 'A3015', 's', '
 
 
 
-
+/*
 EXEC VENTA.pr_insertarVenta
 	1500.00, '2023-05-15', 'Garant�a extendida', 25000.50, 1, 1, 21, 'D', 1234567899876547, 20000, 2000, 
 	'BBVA', '24 MESES', '2023-05-15'
@@ -1704,5 +1560,179 @@ EXEC VENTA.pr_insertarVenta
 EXEC VENTA.pr_insertarVenta
 	1400.00, '2023-06-11', 'Paquete Todo Terreno', 20000.25, 3, 6, 43, 'D', 1234567899876547, 20000, 2000, 
 	'BBVA', '24 MESES', '2023-06-11'
+
+*/
+
+/*
+
+	Registros para VENTA.CREDITO
+*/
+--DBCC CHECKIDENT ('VENTA.CREDITO', RESEED,0);-- Resetear la PK
+go
+INSERT INTO VENTA.CREDITO (numTarjeta, enganche, interesMensual, deuda, banco, tipoCredito, fecha)
+VALUES 
+    (8456789012345678, 10000, 2222, 70000, 'HSBC', 3, '2023-03-01'),
+    (6834567890123654, 25000, 18750,200000, 'Banorte', 1, '2023-01-01'),
+    (9345678901234867, 10000, 3500, 50000, 'Santander', 2, '2023-02-01'),
+    (0567890123456789, 10000, 1875, 80000, 'Inbursa', 4, '2023-04-01'),
+    (1678901234567890, 50000, 4583.34,500000, 'Scotiabank', 1, '2023-05-01'),
+    (5789012345678901, 10000, 2917, 60000, 'Santander', 2, '2023-06-01'),
+    (3890123456789012, 15000, 2084, 60000, 'BBVA', 3, '2023-07-01'),
+    (2901234567890123, 35000, 7917, 345000, 'Santander', 4, '2023-08-01'),
+    (1012345678901234, 10000, 7542, 80500, 'BBVA', 1, '2023-09-01'),
+    (9234567890123456, 25000, 3542, 60000, 'HSBC', 2, '2023-10-01'),
+    (7345078901234567, 40000, 10472,337000, 'Banorte', 3, '2023-11-01'),
+    (1456789012345678, 30000, 6250, 270000, 'Inbursa', 4, '2023-12-01'),
+    (1567890123456789, 10000, 3930, 37150, 'Inbursa', 1, '2024-01-01'),
+    (2678901234567890, 40000, 16350,353000, 'HSBC', 2, '2024-02-01'),
+    (8789012345678903, 10000, 2223, 80000, 'HSBC', 3, '2024-03-01');
+	
+	
+
+/*
+
+	Registros para VENTA.VENTA
+*/
+INSERT INTO VENTA.VENTA (comision, fecha, Extras, CostoTotal, numEmpleado, id_Cliente, id_Coche, id_Credito)
+VALUES
+    (10000.00, '2023-01-01', 'Seguro', 225000.00, 1, 1, 1, 1),
+    (12000.50, '2023-02-01', 'GPS', 60000.00, 2, 2, 2, 2),
+    (9000.75, '2023-03-01', 'Asientos de Cuero', 80000.00, 3, 3, 3, 3),
+    (8000.20, '2023-04-01', 'Paquete de Mantenimiento', 90000.00, 4, 4, 4, 4),
+    (11000.00, '2023-05-01', 'Llantas de Invierno', 550000.00, 5, 5, 5, 5),
+    (9500.50, '2023-06-01', 'Asistencia en Carretera', 70000.00, 6, 6, 6, 6),
+    (10500.25, '2023-07-01', 'Quemacocos', 75000.00, 11, 7, 7, 7),
+    (11500.75, '2023-08-01', 'Techo Solar', 380000.00, 16, 8, 8, 8),
+    (8800.90, '2023-09-01', 'Asientos con Calefacci�n', 90500.00, 20, 9, 9, 9),
+    (13000.00, '2023-10-01', 'Sistema de Entretenimiento', 85000.00, 1, 10, 10, 10),
+    (7500.40, '2023-11-01', 'Sistema de Navegaci�n', 377000.00, 1, 11, 11, 11),
+    (10200.80, '2023-12-01', 'Seguro contra Robo', 300000.00, 1, 12, 12, 12),
+    (9400.30, '2024-01-01', 'Paquete de Servicios', 47150.00, 11, 13, 13, 13),
+    (7800.60, '2024-02-01', 'Asientos Deportivos', 393000.00, 11, 14, 14, 14),
+    (8500.00, '2024-03-01', 'Reproductor de DVD', 80000.00, 11, 15, 15, 15),
+    (12000.25, '2024-04-01', 'Seguro contra Colisiones', 90000.50, 16, 16, 16, NULL),
+    (9800.70, '2024-05-01', 'Sistema de Sonido Premium', 493500.00, 16, 17, 17, NULL),
+    (11000.90, '2024-06-01', 'Asientos El�ctricos', 554500.00, 11, 18, 18, NULL),
+    (8200.40, '2024-07-01', 'Pintura Personalizada', 412000.00, 20, 19, 19, NULL),
+    (10700.80, '2024-08-01', 'Cobertura Extendida', 539000.00, 1, 20, 20, NULL);
+
+
+DISABLE TRIGGER SERVICIO.tgInsertarServicio on SERVICIO.SERVICIO
+INSERT INTO SERVICIO.SERVICIO (id_Coche, id_Cliente, tipoServicio, fecha, hora, motivo, costos, estatus, numEmpleado)
+VALUES
+    (2, 2, 'C', '2023-01-02', '2023-01-02 09:30:00', 'Frenos', 500.00, 'P', NULL),
+    (3, 3, 'C', '2023-01-03', '2023-01-03 11:45:00', 'Servicio programado', 600.00, 'C', NULL),
+    (4, 4, 'R', '2023-01-04', '2023-01-04 14:15:00', 'Reemplazo de bateria', 1700.00, 'C', 7),
+    (5, 5, 'R', '2023-01-05', '2023-01-05 16:30:00', 'Cambio de filtros', 350.00, 'P', 9),
+    (6, 6, 'R', '2023-01-06', '2023-01-06 18:45:00', 'Reparacion de luces', 1500.00, 'E', 12),
+    (7, 7, 'R', '2023-01-07', '2023-01-07 20:00:00', 'Cambio de bujias', 300.00, 'C', 14),
+    (8, 8, 'R', '2023-01-08', '2023-01-08 22:15:00', 'Reemplazo de neum�ticos', 10000.00, 'P', 18),
+    (9, 9, 'C', '2023-01-09', '2023-01-09 05:30:00', 'Revision de Frenos', 150.00, 'P', NULL),
+    (10, 10, 'R', '2023-01-10', '2023-01-10 07:45:00', 'Reparacion de transmision', 3000.00, 'C', 21),
+    (11, 11, 'R', '2023-01-11', '2023-01-11 10:00:00', 'Cambio de aceite', 300.00, 'P', 7),
+    (12, 12, 'C', '2023-01-12', '2023-01-12 12:15:00', 'Revision frenos', 150.00, 'P', NULL),
+    (13, 13, 'R', '2023-01-13', '2023-01-13 14:30:00', 'Alineaci�n y balanceo', 300.00, 'C', 7),
+    (14, 14, 'R', '2023-01-14', '2023-01-14 16:45:00', 'Reemplazo de bateria', 1700.00, 'C', 12),
+    (15, 15, 'R', '2023-01-15', '2023-01-15 19:00:00', 'Cambio de filtros', 350.00, 'P', 14),
+    (16, 16, 'R', '2023-01-16', '2023-01-16 21:15:00', 'Reparacion de luces', 1500.00, 'E', 18),
+    (17, 17, 'R', '2023-01-17', '2023-01-17 23:30:00', 'Cambio de bujias', 300.00, 'C', 14),
+    (18, 18, 'R', '2023-01-18', '2023-01-18 02:45:00', 'Reemplazo de neumaticos', 10000.00, 'P', 7),
+    (19, 19, 'R', '2023-01-19', '2023-01-19 05:00:00', 'Cambio de aceite', 300.00, 'P', 9),
+    (20, 20, 'R', '2023-01-20', '2023-01-20 07:15:00', 'Reparacion de frenos', 700.00, 'P', 21);
+
+INSERT INTO SERVICIO.REPARACION (id_Servicio, id_Reparacion)
+VALUES
+    (3, 4),
+    (4, 18),
+    (5, 5),
+    (6, 19),
+    (7, 15),
+    (9, 16),
+    (10, 14),
+    (12, 4),
+    (13, 13),
+    (14, 18),
+    (15, 3),
+    (16, 19),
+    (17, 15),
+    (18, 16),
+    (19, 4);
+
+/*
+	Registros para tabla SERVICIO.REVISION
+*/
+
+DISABLE TRIGGER SERVICIO.tgInserRevision on SERVICIO.REVISION
+INSERT INTO SERVICIO.REVISION (id_Servicio, fechaPlaneacion, fechaRealizacion, id_Revision, numEmpleado)
+VALUES
+(2, '2023-01-01 10:00:00', '2023-01-01 12:00:00',  5, 8),
+(3, '2023-01-02 11:30:00', '2023-01-02 14:00:00', 3, 10),
+(9, '2023-01-03 13:45:00', '2023-01-03 16:30:00',  5, 13),
+(12, '2023-01-04 16:15:00', '2023-01-04 18:45:00', 5, 15);
+
+
+
+
+
+INSERT INTO EMPLEADO.CURSO (Curso, numEmpleado)
+VALUES
+
+    ('AfinaciOn de Motores con InyecciOn ElectrOnica', 7),
+    ('Mantenimiento de Transmision Automatica', 9),
+    ('Reparacion de Sistema de Frenos Convencionales, ABS y Electronicos', 12),
+    ('Suspension y Direccion', 14),
+    ('Transmision Manual y Embrague', 18),
+    ('Mantenimiento de Transmision Automatica', 21);
+GO
+
+
+
+	--==============================
+SELECT 'EMPLEADOS' AS EMPLEADOS
+SELECT * FROM EMPLEADO.DIRECCION
+SELECT * FROM EMPLEADO.EMPLEADO
+SELECT * FROM EMPLEADO.TELEFONO
+--==============================
+
+--==============================
+SELECT * FROM EMPLEADO.AGENTE_VENTA
+SELECT * FROM EMPLEADO.TECNICO
+SELECT * FROM EMPLEADO.MECANICO
+SELECT * FROM EMPLEADO.CURSO
+
+--==============================
+
+--==============================
+SELECT 'AVAL' as AVAL
+SELECT * FROM AVAL.DIRECCION
+SELECT * FROM AVAL.TELEFONO
+SELECT * FROM AVAL.AVAL
+
+
+--==============================
+--==============================
+SELECT 'CLIENTE' AS CLIENTES
+SELECT * FROM CLIENTE.DIRECCION
+SELECT * FROM CLIENTE.CLIENTE
+SELECT * FROM CLIENTE.TELEFONO
+SELECT * FROM CLIENTE.CORREO
+--==============================
+--==============================
+SELECT 'COCHES' 
+SELECT * FROM COCHE.COCHE
+SELECT * FROM COCHE.SEGUNDA
+--==============================
+--==============================
+SELECT 'VENTAS'
+SELECT * FROM CATALOGO.CREDITO
+SELECT * FROM VENTA.CREDITO
+SELECT * FROM VENTA.VENTA
+--==============================
+--==============================
+SELECT 'SERVICIOS'
+SELECT * FROM SERVICIO.SERVICIO
+SELECT * FROM SERVICIO.REPARACION
+SELECT * FROM SERVICIO.REVISION
+--==============================
 
 
