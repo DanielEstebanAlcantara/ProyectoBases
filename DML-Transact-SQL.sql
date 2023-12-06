@@ -1,4 +1,4 @@
-﻿use CONCESIONARIA
+use CONCESIONARIA14
 GO
 
 /* 
@@ -178,7 +178,7 @@ BEGIN
 												WHERE id_Coche = (SELECT id_Coche FROM inserted))
 		print('El coche no le pertenece a el cliente específicado')
 
-	ELSE IF (SELECT numEmpleado from inserted) NOT IN (SELECT numEmpleado from EMPLEADO.MECANICO)
+	ELSE IF (SELECT numEmpleado FROM inserted) NOT IN (SELECT numEmpleado from EMPLEADO.MECANICO)
 		print('El empleado no puede realizar este servicio')
 
 	ELSE 
@@ -239,7 +239,7 @@ END
 GO
 
 /*
-TRIGGER TELEFNOS QUE SEAN DE 10 DIGITOS
+TRIGGER TELEFNOS 
 */
 /*
 	TRIGGER para AVAL.TELEFONO
@@ -318,88 +318,88 @@ END
 GO
 
 
---/*
---	TRIGGER para VENTA.VENTA
---*/
---CREATE OR ALTER TRIGGER VENTA.tr_InsertaVenta
---ON VENTA.VENTA
---INSTEAD OF INSERT
---AS
---	BEGIN
---		--Validar que el empleado sea agente de ventas
---		IF NOT EXISTS(SELECT numEmpleado FROM EMPLEADO.AGENTE_VENTA
---			WHERE numEmpleado=(SELECT numEmpleado FROM inserted))
---			BEGIN
---				PRINT 'El empleado no es un agente de venta'
---			END
---		--Validar que el coche exista
---		ELSE IF NOT EXISTS(SELECT id_Coche FROM COCHE.COCHE 
---			WHERE id_Coche=(SELECT id_Coche FROM inserted))
---			BEGIN
---				PRINT 'El coche referenciado no existe'
---			END
---		--Validar que el coche no ha sido vendido anteriormente
---		ELSE IF EXISTS(SELECT 1 FROM inserted i
---			INNER JOIN VENTA.VENTA v ON i.id_Coche=v.id_Coche)
---			BEGIN
---				PRINT 'El coche ha sido vendido anteriormente'
---			END
---		--Validar que el cliente exista
---		ELSE IF NOT EXISTS(SELECT id_Cliente FROM CLIENTE.CLIENTE
---			WHERE id_Cliente=(SELECT id_Cliente FROM inserted))
---			BEGIN
---				PRINT 'El cliente referenciado no existe'
---			END
---		--Validar que la venta a credito exista
---		ELSE IF NOT EXISTS(SELECT 1 FROM inserted i
---			LEFT JOIN VENTA.CREDITO c ON i.id_Credito=c.id_Credito
---			WHERE (i.id_Credito IS NULL OR c.id_Credito IS NOT NULL))
---			BEGIN
---				PRINT 'La venta a credito referenciada no existe o no es nulo'
---			END
---		--Validar que el cliente no compre el mismo que vendió
---		ELSE IF EXISTS(SELECT id_Cliente FROM COCHE.SEGUNDA
---			WHERE id_Cliente=(SELECT id_Cliente FROM inserted) 
---				AND id_Coche=(SELECT id_Coche FROM inserted))
---			BEGIN
---				PRINT 'No se permite que el cliente que vaya a comprar, sea el mismo que vendió'
---			END
---		ELSE
---			BEGIN
---			INSERT INTO VENTA.VENTA
---			SELECT comision,fecha,Extras,CostoTotal,numEmpleado,id_Cliente,id_Coche,id_Credito
---			FROM inserted
---			END
---	END;
---GO
+/*
+	TRIGGER para VENTA.VENTA
+*/
+CREATE OR ALTER TRIGGER VENTA.tr_InsertaVenta
+ON VENTA.VENTA
+INSTEAD OF INSERT
+AS
+	BEGIN
+		--Validar que el empleado sea agente de ventas
+		IF NOT EXISTS(SELECT numEmpleado FROM EMPLEADO.AGENTE_VENTA
+			WHERE numEmpleado=(SELECT numEmpleado FROM inserted))
+			BEGIN
+				PRINT 'El empleado no es un agente de venta'
+			END
+		--Validar que el coche exista
+		ELSE IF NOT EXISTS(SELECT id_Coche FROM COCHE.COCHE 
+			WHERE id_Coche=(SELECT id_Coche FROM inserted))
+			BEGIN
+				PRINT 'El coche referenciado no existe'
+			END
+		--Validar que el coche no ha sido vendido anteriormente
+		ELSE IF EXISTS(SELECT 1 FROM inserted i
+			INNER JOIN VENTA.VENTA v ON i.id_Coche=v.id_Coche)
+			BEGIN
+				PRINT 'El coche ha sido vendido anteriormente'
+			END
+		--Validar que el cliente exista
+		ELSE IF NOT EXISTS(SELECT id_Cliente FROM CLIENTE.CLIENTE
+			WHERE id_Cliente=(SELECT id_Cliente FROM inserted))
+			BEGIN
+				PRINT 'El cliente referenciado no existe'
+			END
+		--Validar que la venta a credito exista
+		ELSE IF NOT EXISTS(SELECT 1 FROM inserted i
+			LEFT JOIN VENTA.CREDITO c ON i.id_Credito=c.id_Credito
+			WHERE (i.id_Credito IS NULL OR c.id_Credito IS NOT NULL))
+			BEGIN
+				PRINT 'La venta a credito referenciada no existe o no es nulo'
+			END
+		--Validar que el cliente no compre el mismo que vendió
+		ELSE IF EXISTS(SELECT id_Cliente FROM COCHE.SEGUNDA
+			WHERE id_Cliente=(SELECT id_Cliente FROM inserted) 
+				AND id_Coche=(SELECT id_Coche FROM inserted))
+			BEGIN
+				PRINT 'No se permite que el cliente que vaya a comprar, sea el mismo que vendió'
+			END
+		ELSE
+			BEGIN
+			INSERT INTO VENTA.VENTA
+			SELECT comision,fecha,Extras,CostoTotal,numEmpleado,id_Cliente,id_Coche,id_Credito
+			FROM inserted
+			END
+	END;
+GO
 
 
---/*
---	TRIGGER para VENTA.CREDITO
---*/
+/*
+	TRIGGER para VENTA.CREDITO
+*/
 
---CREATE OR ALTER TRIGGER VENTA.tr_InsertaCredito
---ON VENTA.CREDITO
---INSTEAD OF INSERT
---AS 
---	BEGIN
---		IF NOT EXISTS(SELECT tipoCredito 
---			FROM CATALOGO.CREDITO
---			WHERE tipoCredito=(SELECT tipoCredito FROM inserted))
---			BEGIN
---			PRINT 'El crédito referenciado no existe'
---			END
---		ELSE IF EXISTS (SELECT numTarjeta FROM VENTA.CREDITO
---						WHERE numTarjeta = (SELECT numTarjeta from inserted)	)
---			print 'La tarjeta ya ha sido utilizada en otra venta'
---		ELSE
---			BEGIN
---				INSERT INTO VENTA.CREDITO
---				SELECT numTarjeta, enganche, interesMensual, deuda, banco, tipoCredito, fecha 
---				FROM inserted
---			END
---	END
---GO
+CREATE OR ALTER TRIGGER VENTA.tr_InsertaCredito
+ON VENTA.CREDITO
+INSTEAD OF INSERT
+AS 
+	BEGIN
+		IF NOT EXISTS(SELECT tipoCredito 
+			FROM CATALOGO.CREDITO
+			WHERE tipoCredito=(SELECT tipoCredito FROM inserted))
+			BEGIN
+			PRINT 'El crédito referenciado no existe'
+			END
+		ELSE IF EXISTS (SELECT numTarjeta FROM VENTA.CREDITO
+						WHERE numTarjeta = (SELECT numTarjeta from inserted)	)
+			print 'La tarjeta ya ha sido utilizada en otra venta'
+		ELSE
+			BEGIN
+				INSERT INTO VENTA.CREDITO
+				SELECT numTarjeta, enganche, interesMensual, deuda, banco, tipoCredito, fecha 
+				FROM inserted
+			END
+	END
+GO
 
 
 
@@ -419,73 +419,6 @@ GO
 
 
 GO
-
-
-
---CREATE OR ALTER  PROCEDURE COCHE.REGISTRAR_COCHE
---    -- Parámetros 
---    @P_modelo           varchar(10),       
---    @P_extras           varchar(50),        
---    @P_matricula		 varchar(6),  
---    @P_tipoCoche        char(1),   
---	--Los siguientes son parametros para un coche de segunda mano
---	@P_fecha            date,
---    @P_costo            money,
---    @P_id_Cliente       smallint
-
---AS
---BEGIN
---	DECLARE @V_tipoCoche  char(10) = UPPER(@P_tipoCoche);
---	DECLARE @V_modelo varchar(10) = UPPER(@P_modelo);
---	DECLARE @V_id_Coche smallint;--Variable de receteo para el id_Coche
---	DECLARE @V_tantosCochesDeCliente int;
---	DECLARE @V_nuevoCocheid smallint;
---	-- recetear la PK de COCHE.COCHE
---	SET @V_id_Coche = ISNULL((SELECT MAX(id_Coche) FROM COCHE.COCHE),0);
---	DBCC CHECKIDENT ('COCHE.COCHE', RESEED, @V_id_Coche);
-	
-	
-
-
---	--insertar en COCHE.COCHE si tipo = 'N'
-	
---		IF  @V_tipoCoche = 'N' 
---		BEGIN
---			INSERT INTO COCHE.COCHE (modelo, extras, matricula, tipoCoche)
---			VALUES (@V_modelo, @P_extras, @P_matricula, 'N')
---		END
---		ELSE IF  @V_tipoCoche = 'S' 
---		BEGIN
---		BEGIN TRANSACTION NoCocheSegunda
---			SET @V_tantosCochesDeCliente = (SELECT COUNT(id_Cliente) FROM COCHE.SEGUNDA
---					WHERE id_Cliente = @P_id_Cliente)
---			IF EXISTS (SELECT matricula FROM COCHE.COCHE
---						WHERE matricula = @P_matricula )
---				PRINT 'LA MATRICULA QUE INTENTAS INGRESAR YA HA SIDO REGISTRADA PR'
---			ELSE IF @V_tantosCochesDeCliente < 3 
---				BEGIN
---					SELECT @V_tantosCochesDeCliente
---					INSERT INTO COCHE.COCHE (modelo, extras, matricula, tipoCoche)
---					VALUES (@V_modelo, @P_extras, @P_matricula,'S')
---					INSERT INTO COCHE.SEGUNDA (id_Coche, fecha, costo, id_Cliente)
---					VALUES (
---					(
---						SELECT MAX(id_Coche) FROM COCHE.COCHE
-						
---					),
---					@P_fecha, @P_costo, @P_id_Cliente
---					)
---				END
---			ELSE IF @V_tantosCochesDeCliente = 3 
---				print 'EL CLIENTE YA HA VENDIDO 3 COCHES YA NO SE PUEDE REGISTRAR UNO MAS';
-			
---			SET @V_nuevoCocheid = ISNULL((SELECT MAX(id_Coche) FROM COCHE.COCHE),0);
---			IF @V_id_Coche < @V_nuevoCocheid
---				COMMIT TRANSACTION NoCocheSegunda
---			ELSE IF @V_id_Coche = @V_nuevoCocheid
---				ROLLBACK TRANSACTION NoCocheSegunda
---		END
---END
 CREATE OR ALTER  PROCEDURE COCHE.REGISTRAR_COCHE
     -- Parámetros 
     @P_modelo           varchar(10),       
@@ -525,7 +458,6 @@ BEGIN
 				PRINT 'LA MATRICULA QUE INTENTAS INGRESAR YA HA SIDO REGISTRADA PR'
 			ELSE IF @V_tantosCochesDeCliente < 3 
 				BEGIN
-					SELECT ('xd')
 					INSERT INTO COCHE.COCHE (modelo, extras, matricula, tipoCoche)
 					VALUES (@V_modelo, @P_extras, @P_matricula,'S')
 					INSERT INTO COCHE.SEGUNDA (id_Coche, fecha, costo, id_Cliente)
@@ -1268,7 +1200,7 @@ BEGIN
 		END
 END
                                   
-                                  
+                           
 
                                   
                                   
@@ -1424,7 +1356,11 @@ CREATE OR ALTER PROCEDURE pr_eliminarReparacion
 	END
 
 
-     
+
+
+
+
+/*     
 go
 CREATE OR ALTER PROCEDURE	BACK.RESE
 AS
@@ -1447,4 +1383,4 @@ BEGIN
 	DBCC CHECKIDENT ('VENTA.VENTA', RESEED, 0);
 	DBCC CHECKIDENT ('VENTA.CREDITO', RESEED, 0);
 
-END
+END*/
