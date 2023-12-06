@@ -1466,7 +1466,26 @@ EXEC EMPLEADO.PR_REGISTROEMPLEADO
 
 
 
-
+EXEC COCHE.REGISTRAR_COCHE 'Sedan', 'Aire', 'ABC123', 'N', NULL, NULL, NULL;
+EXEC COCHE.REGISTRAR_COCHE 'SUV', 'GPS', 'DEF456', 'S', '2023-01-01', 25000.00, 1;
+EXEC COCHE.REGISTRAR_COCHE 'Compacto', 'Bluetooth', 'GHI789', 'S', '2023-02-01', 18000.00, 2;
+EXEC COCHE.REGISTRAR_COCHE 'Pickup', 'Asientos de cuero', 'JKL012', 'S', '2023-03-01', 30000.00, 3;
+EXEC COCHE.REGISTRAR_COCHE 'Hatchback', 'Camara de reversa', 'MNO345', 'N', NULL, NULL, NULL;
+EXEC COCHE.REGISTRAR_COCHE 'Sedan', NULL, 'PQR678', 'S', '2023-04-01', 20000.00, 4;
+EXEC COCHE.REGISTRAR_COCHE 'Camioneta', 'Techo solar', 'STU901', 'S', '2023-05-01', 28000.00, 5;
+EXEC COCHE.REGISTRAR_COCHE 'Compacto', 'Asientos calefaccionados', 'VWX234', 'N', NULL, NULL, NULL;
+EXEC COCHE.REGISTRAR_COCHE 'SUV', 'Sistema de sonido premium', 'YZA567', 'N', NULL, NULL, NULL;
+EXEC COCHE.REGISTRAR_COCHE 'Hatchback', 'Puertas electricas', 'BCD890', 'S', '2023-06-01', 22000.00, 6;
+EXEC COCHE.REGISTRAR_COCHE 'Pickup', 'Asientos de tela', 'EFG123', 'N', NULL, NULL, NULL;
+EXEC COCHE.REGISTRAR_COCHE 'Sedan', 'Sensores de estacionamiento', 'HIJ456', 'N', NULL, NULL, NULL;
+EXEC COCHE.REGISTRAR_COCHE 'Compacto', NULL, 'KLM789', 'S', '2023-07-01', 19000.00, 7;
+EXEC COCHE.REGISTRAR_COCHE 'SUV', 'Sistema de entretenimiento', 'NOP012', 'N', NULL, NULL, NULL;
+EXEC COCHE.REGISTRAR_COCHE 'Hatchback', 'Control de crucero', 'QRS345', 'S', '2023-08-01', 21000.00, 8;
+EXEC COCHE.REGISTRAR_COCHE 'Pickup', 'Faros LED', 'TUV678', 'S', '2023-09-01', 32000.00, 9;
+EXEC COCHE.REGISTRAR_COCHE 'Sedan', 'Asientos plegables', 'WXY901', 'S', '2023-10-01', 23000.00, 10;
+EXEC COCHE.REGISTRAR_COCHE 'Compacto', 'Volante multifuncion', 'ZAB234', 'N', NULL, NULL, NULL;
+EXEC COCHE.REGISTRAR_COCHE 'SUV', NULL, 'CDE567', 'N', NULL, NULL, NULL;
+EXEC COCHE.REGISTRAR_COCHE 'Pickup', 'Sistema de traccion en las cuatro ruedas', 'FGH890', 'N', NULL, NULL, NULL;
 
 
 -- Focus (10 registros)
