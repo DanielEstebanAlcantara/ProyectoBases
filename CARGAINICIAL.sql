@@ -1524,99 +1524,224 @@ VALUES
     (10700.80, '2024-08-01', 'Cobertura Extendida', 539000.00, 1, 20, 20, NULL);
 	*/
 
+
+-----54 Ventas
 EXEC VENTA.pr_insertarVenta
-	1500.00, '2023-05-15', 'Garant�a extendida', 25000.50, 1, 1, 21, 'D', 1234567899876547, 20000, 2000, 
-	'BBVA', '24 MESES', '2023-05-15'
+	1500.00, '2023-05-15', 'Garantía extendida', 250000.50, 1, 1, 21, 'D', 1234567899876547, 20000, 2000, 
+	'BBVA', '24 MESES', '2023-05-15';
 
 EXEC VENTA.pr_insertarVenta
-	3200.00, '2023-05-22', 'Paquete de lujo', 48000.75, 1, 1, 22, 'C', 1234567890123456, 10000, 1000, 
+	3200.00, '2023-05-22', 'Paquete de lujo', 480000.75, 1, 1, 22, 'C', 1234567890103456, 48000.75, 36000, 
 	'SANTANDER', '12 MESES', '2023-05-22'
 
 EXEC VENTA.pr_insertarVenta
-	800.00, '2023-05-10', 'Servicio de mantenimiento', 18000.25, 1, 1, 23, 'D', 1234567899876547, 20000, 2000, 
+	800.00, '2023-05-10', 'Servicio de mantenimiento', 18000.25, 1, 1, 23, 'D', 1234567899876547, 20000, 50000,
 	'BBVA', '24 MESES', '2023-05-10'
 
 EXEC VENTA.pr_insertarVenta
-	4200.00, '2023-05-05', 'Accesorios personalizados', 53000.00, 1, 1, 24, 'C', 9876543210987654, 15000, 1500, 
+	4200.00, '2023-05-05', 'Accesorios personalizados', 53000.00, 1, 1, 24, 'D', 9876543210987654, 15000, 10000,
 	'HSBC', '24 MESES', '2023-05-05'
 
 EXEC VENTA.pr_insertarVenta
-	2000.00, '2023-05-18', 'Seguro de veh�culo', 32000.80, 1, 2, 25, 'D', 1234567899876547, 20000, 2000, 
+	2000.00, '2023-05-18', 'Seguro de vehículo', 320000.80, 1, 2, 25, 'D', 1234567899876547, 20000, 2000, 
 	'BBVA', '24 MESES', '2023-05-18'
 --5
 EXEC VENTA.pr_insertarVenta
-	1800.00, '2023-05-05', 'Paquete de Entretenimiento', 30000.75, 1, 2, 26, 'C', 1111222233334444, 5000, 1000, 
-	'BANAMEX', '36 MESES', '2023-05-05'
+	1800.00, '2023-05-05', 'Paquete de Entretenimiento', 300000.75, 1, 2, 26, 'D', 1111222233334444, 5000, 1000, 
+	 'BANAMEX', '36 MESES', '2023-05-05'
 
 EXEC VENTA.pr_insertarVenta
-	2500.00, '2023-05-12', 'Sistema de Navegaci�n', 42000.50, 1, 2, 27, 'D', 1234567899876547, 20000, 2000, 
-	'BBVA', '24 MESES', '2023-05-12'
-
-EXEC VENTA.pr_insertarVenta
-	1200.00, '2023-05-20', 'Paquete Deportivo', 22000.25, 1, 2, 28, 'C', 5555666677778888, 12000, 1200, 
+	1200.00, '2023-05-20', 'Paquete Deportivo', 220000, 1, 2, 28, 'C', 5555666677778888, 22000,4125,  
 	'INBURSA', '48 MESES', '2023-05-20'
 
 EXEC VENTA.pr_insertarVenta
-	3500.00, '2023-05-02', 'Asientos de Cuero', 58000.00, 1, 3, 29, 'D', 1234567899876547, 20000, 2000, 
+	3500.00, '2023-05-02', 'Asientos de Cuero', 580000.00, 1, 3, 29, 'D', 1234567899876547, 20000, 2000, 
 	'BBVA', '24 MESES', '2023-05-02'
 
 EXEC VENTA.pr_insertarVenta
-	3000.00, '2023-05-15', 'Paquete de Seguridad', 48000.80, 1, 3, 30, 'C', 9999888877776666, 15000, 1500, 
+	3000.00, '2023-05-15', 'Paquete de Seguridad', 480000.80, 1, 3, 30, 'D', 9999888877776666, 15000, 1500, 
 	'BBVA', '12 MESES', '2023-05-15'
 --10	
 EXEC VENTA.pr_insertarVenta
-	2000.00, '2023-05-01', 'Paquete de Iluminaci�n LED', 35000.75, 1, 3, 31, 'D', 1234567899876547, 20000, 2000,
+	2000.00, '2023-05-01', 'Paquete de Iluminación LED', 35000.75, 1, 3, 31, 'D', 1234567899876547, 20000, 2000, 
 	'BBVA', '24 MESES', '2023-05-01'
 
 EXEC VENTA.pr_insertarVenta
-	2800.00, '2023-05-10', 'Sistema de Sonido Premium', 52000.50, 1, 3, 32, 'C', 4444333322221111, 18000, 1800, 
-	'SANTANDER', '24 MESES', '2023-05-10'
+	2800.00, '2023-05-10', 'Sistema de Sonido Premium', 520000.50, 1, 3, 32, 'D', 4444333322221111, 18000, 1800, 
+	 'SANTANDER', '24 MESES', '2023-05-10'
 	
 EXEC VENTA.pr_insertarVenta
-	1500.00, '2023-05-18', 'Paquete de Confort', 25000.25, 2, 4, 33, 'D', 1234567899876547, 20000, 2000, 
+	1500.00, '2023-05-18', 'Paquete de Confort', 250000.25, 2, 4, 33, 'D', 1234567899876547, 20000, 2000, 
 	'BBVA', '24 MESES', '2023-05-18'
 	
-EXEC VENTA.pr_insertarVenta
-	3900.00, '2023-05-25', 'Techo Solar Panor�mico', 62000.00, 2, 4, 34, 'C', 8888777766665555, 13000, 1500, 
-	'INBURSA', '36 MESES', '2023-05-25'
 	
 EXEC VENTA.pr_insertarVenta
-	3200.00, '2023-05-05', 'Asistente de Estacionamiento', 48000.80, 2, 4, 35, 'D', 1234567899876547, 20000, 
+	3900.00, '2023-05-25', 'Techo Solar Panorámico', 620000.00, 2, 4, 34, 'C', 8888777766665555,62000, 15500, 
+	 'INBURSA', '36 MESES', '2023-05-25'
+	
+EXEC VENTA.pr_insertarVenta
+	3200.00, '2023-05-05', 'Asistente de Estacionamiento', 480000.80, 2, 4, 35, 'D', 1234567899876547, 20000, 
 	2000, 'BBVA', '24 MESES', '2023-11-23'
 --15
 EXEC VENTA.pr_insertarVenta
-	1800.00, '2023-06-10', 'Paquete de Seguridad Avanzada', 30000.75, 2, 4, 36, 'C', 1234987654321098, 10000, 
-	5000, 'BBVA', '12 MESES', '2023-06-10'
+	1800.00, '2023-06-10', 'Paquete de Seguridad Avanzada', 300000, 2, 4, 36, 'C', 1234987654321098, 30000, 
+	22500, 'BBVA', '12 MESES', '2023-06-10'
 	
 EXEC VENTA.pr_insertarVenta
-	2400.00, '2023-06-15', 'Asientos con Masaje', 42000.50, 2, 5, 37, 'D', 1234567899876547, 20000, 2000, 
+	2400.00, '2023-06-15', 'Asientos con Masaje', 420000.50, 2, 5, 37, 'D', 1234567899876547, 20000, 2000, 
 	'BBVA', '24 MESES', '2023-11-23'
 
 EXEC VENTA.pr_insertarVenta
-	1300.00, '2023-06-20', 'Paquete de Tecnolog�a', 22000.25, 2, 5, 38, 'C', 8765123456789012, 10000, 1000,
+	1300.00, '2023-06-20', 'Paquete de Tecnología', 220000.25, 2, 5, 38, 'D', 8765123456789012, 10000, 1000,  
 	'INBURSA', '48 MESES', '2023-06-20'
 	
 EXEC VENTA.pr_insertarVenta
-	3600.00, '2023-06-25', 'Sistema de Asistencia al Conductor', 58000.00, 2, 5, 39, 'D', 1234567899876547, 20000, 
+	3600.00, '2023-06-25', 'Sistema de Asistencia al Conductor', 580000.00, 2, 5, 39, 'D', 1234567899876547, 20000, 
 	2000, 'BBVA', '24 MESES', '2023-11-23'
 	
 EXEC VENTA.pr_insertarVenta
-	3100.00, '2023-06-30', 'Paquete Familiar', 48000.80, 2, 5, 40, 'C', 1111222233334444, 12000, 2000, 
+	3100.00, '2023-06-30', 'Paquete Familiar', 480000.80, 2, 5, 40, 'D', 1111222233334444, 12000, 2000, 
 	'HSBC', '12 MESES', '2023-06-30'
 --20
 EXEC VENTA.pr_insertarVenta
-	1700.00, '2023-06-05', 'Paquete de Conectividad', 28000.75, 3, 6, 41, 'D', 1234567899876547, 20000, 2000, 
+	1700.00, '2023-06-05', 'Paquete de Conectividad', 280000.75, 3, 6, 41, 'D', 1234567899876547, 20000, 2000, 
 	'BBVA', '24 MESES', '2023-06-05'
 
 EXEC VENTA.pr_insertarVenta
-	2600.00, '2023-06-10', 'Asientos Deportivos', 48000.50, 3, 6, 42, 'C', 9876123456789012, 14000, 2000, 
+	2600.00, '2023-06-10', 'Asientos Deportivos', 480000.50, 3, 6, 42, 'D', 9876123456789012, 14000, 2000,
 	'BANORTE', '24 MESES', '2023-06-10'
 
 EXEC VENTA.pr_insertarVenta
-	1400.00, '2023-06-11', 'Paquete Todo Terreno', 20000.25, 3, 6, 43, 'D', 1234567899876547, 20000, 2000, 
+	1400.00, '2023-06-11', 'Paquete Todo Terreno', 200000.25, 3, 6, 43, 'D', 1234567899876547, 20000, 2000, 
 	'BBVA', '24 MESES', '2023-06-11'
-GO
 
+EXEC VENTA.pr_insertarVenta
+	3300.00, '2023-06-20', 'Sistema de Alerta de Colisión', 550000.00, 3, 6, 44, 'D', 3333444455556666, 11000, 1500
+	, 'INBURSA', '36 MESES', '2023-06-20'
+
+EXEC VENTA.pr_insertarVenta
+	2800.00, '2023-06-25', 'Paquete de Invierno', 420000.80, 3, 7, 45, 'D', 1234567899876547, 20000, 2000, 
+	'BBVA', '24 MESES', '2023-06-25'
+--25
+EXEC VENTA.pr_insertarVenta
+	1900.00, '2023-06-28', 'Asientos Térmicos', 320000.75, 4, 7, 46, 'D', 6666555544443333, 19000, 1000,
+	'BBVA', '48 MESES', '2023-06-28'
+
+EXEC VENTA.pr_insertarVenta
+	3000.00, '2023-12-05', 'Paquete Eco-Friendly', 550000.50, 4, 7, 47, 'D', 1234567899876547, 20000, 2000, 
+	'BBVA', '24 MESES', '2023-12-05'
+
+EXEC VENTA.pr_insertarVenta
+	1200.00, '2023-12-10', 'Sistema de Entretenimiento Trasero', 180000.25, 4, 7, 48, 'D', 1234678901234567, 1500, 500, 'SANTANDER', '12 MESES', '2023-12-10'
+
+EXEC VENTA.pr_insertarVenta
+	3700.00, '2023-12-15', 'Paquete de Viaje', 610000.00, 4, 8, 49, 'D', 1234567899876547, 20000, 2000,
+	'BBVA', '24 MESES', '2023-12-15'
+
+EXEC VENTA.pr_insertarVenta
+	3200.00, '2023-12-20', 'Asistente de Carril', 480000.80, 4, 8, 50, 'D', 8888999977775555, 12000, 1200,
+	'BBVA', '36 MESES', '2023-12-20'
+--30
+EXEC VENTA.pr_insertarVenta
+	3100.00, '2023-12-25', 'Sistema de Asistencia de Emergencia', 56000.50, 5, 8, 51, 'D', 8888999977775555, 12000, 1200, 
+	'BBVA', '36 MESES', '2023-12-25'
+
+EXEC VENTA.pr_insertarVenta
+	1700.00, '2023-12-28', 'Paquete de Entretenimiento Familiar', 280000.75, 5, 9, 52, 'D', 5555666677778888, 12000, 
+	1000 ,'HSBC', '12 MESES', '2023-12-28'
+
+EXEC VENTA.pr_insertarVenta
+	2400.00, '2023-12-05', 'Asientos Ventilados', 48000.50, 5, 9, 53, 'D', 8888999977775555, 12000, 1200, 
+	'BBVA', '36 MESES', '2023-12-05'
+
+EXEC VENTA.pr_insertarVenta
+	1300.00, '2023-12-10', 'Paquete de Negocios', 22000.25, 5, 9, 54, 'D', 9999888877776666, 2000, 1000,
+	'BANAMEX', '24 MESES', '2023-12-10'
+
+EXEC VENTA.pr_insertarVenta
+	3600.00, '2023-12-15', 'Sistema de Carga Inalámbrica', 59000.00, 5, 10, 55, 'D', 8888999977775555, 12000, 1200,
+	'BBVA', '36 MESES', '2023-12-15'
+--35
+EXEC VENTA.pr_insertarVenta
+	3100.00, '2023-12-20', 'Paquete de Viaje Todo Terreno', 450000.80, 6, 10, 56, 'D', 1111652233334456, 8000, 
+	1000, 'INBURSA', '36 MESES', '2023-12-20'
+
+EXEC VENTA.pr_insertarVenta
+	1900.00, '2023-12-25', 'Sistema de Alerta de Tráfico Cruzado', 32000.75, 6, 10, 57, 'D', 8888999977775555, 12000, 1200,
+	'BBVA', '36 MESES', '2023-12-25'
+
+EXEC VENTA.pr_insertarVenta
+	3000.00, '2023-12-30', 'Paquete de Conducción Autónoma', 53000.50, 6, 11, 58, 'D', 7777666825554444, 16000, 2000, 
+	 'BBVA', '48 MESES', '2023-12-30'
+
+EXEC VENTA.pr_insertarVenta
+	1200.00, '2023-12-05', 'Asientos con Soporte Lumbar', 18000.25, 6, 11, 59, 'D', 8888999977775555, 12000, 1200,  
+	'BBVA', '36 MESES', '2023-12-05'
+
+EXEC VENTA.pr_insertarVenta
+	3700.00, '2023-12-10', 'Paquete de Aventura', 61000.00, 11, 11, 60, 'D', 8881599977774555, 12000, 2500, 
+	 'BANORTE', '12 MESES', '2023-12-10'
+--40
+EXEC VENTA.pr_insertarVenta
+	2800.00, '2023-12-15', 'Paquete de Seguridad Avanzada', 480000.50, 11, 12, 61, 'D', 8881599977774555, 12000, 2500, 
+	 'BANORTE', '12 MESES', '2023-12-15'
+
+EXEC VENTA.pr_insertarVenta
+	1500.00, '2023-12-20', 'Sistema de Navegación Avanzada', 240000.25, 16, 12, 62, 'D', 5555709433332290, 5000, 1000,
+	'BBVA', '24 MESES', '2023-12-10'
+
+EXEC VENTA.pr_insertarVenta
+	3200.00, '2023-12-25', 'Paquete Deportivo Mejorado', 540000.80, 16, 12, 63, 'D', 8881599977774555, 12000, 2500, 
+	 'BANORTE', '12 MESES', '2023-12-25'
+
+EXEC VENTA.pr_insertarVenta
+	2000.00, '2023-11-28', 'Asientos con Masaje y Calefacción', 320000.75, 16, 13, 64, 'D', 6234784512345614, 14000, 2000, 
+	'HSBC', '36 MESES', '2023-11-28'
+
+EXEC VENTA.pr_insertarVenta
+	3500.00, '2023-03-05', 'Sistema de Sonido Premium Surround', 590000.00, 16, 13, 65, 'D', 8881599977774555, 12000, 2500, 
+	'BANORTE', '12 MESES', '2023-12-10'
+--45
+EXEC VENTA.pr_insertarVenta
+	3100.00, '2023-04-10', 'Paquete de Confort Ejecutivo', 480000.80, 16, 14, 66, 'D', 7765443210983454, 18000, 
+	2000,  'HSBC', '48 MESES', '2023-04-10'
+
+EXEC VENTA.pr_insertarVenta
+	1800.00, '2023-05-15', 'Techo Panorámico', 30000.75, 20, 14, 67, 'D', 8881599977774555, 12000, 2500, 
+	 'BANORTE', '12 MESES', '2023-05-15'
+
+EXEC VENTA.pr_insertarVenta
+	2900.00, '2023-06-20', 'Paquete de Iluminación Ambiental', 520000.50, 20, 15, 68, 'D', 1111666722224234, 
+	15000, 1500, 'BBVA', '12 MESES', '2023-06-20'
+
+EXEC VENTA.pr_insertarVenta
+	1600.00, '2023-07-25', 'Asientos Deportivos con Memoria', 240000.25, 20, 15, 69, 'D', 8881599977774555, 12000, 2500, 
+	 'BANORTE', '12 MESES', '2023-07-25'
+
+EXEC VENTA.pr_insertarVenta
+	3400.00, '2023-08-30', 'Paquete de Tecnología Avanzada', 570000.00, 20, 16, 70, 'D', 9099551277777633, 12000, 
+	2000, 'INBURSA', '36 MESES', '2023-08-30'
+--50
+EXEC VENTA.pr_insertarVenta
+	2200.00, '2023-09-05', 'Paquete de Seguridad para Niños', 360000.75, 20, 16, 71, 'D', 9099551277777633, 12000, 
+	2000, 'INBURSA', '36 MESES', '2023-09-05'
+
+EXEC VENTA.pr_insertarVenta
+	3000.00, '2023-10-10', 'Sistema de Entretenimiento Trasero Mejorado', 500000.50, 20, 17, 72, 'D', 5543367328021111, 
+	16000, 1500, 'BBVA', '12 MESES', '2023-10-10'
+
+EXEC VENTA.pr_insertarVenta
+	1700.00, '2023-11-15', 'Paquete de Tecnología para Viajes', 280000.25, 20, 18, 73, 'D', 9099551277777633, 12000, 
+	2000, 'INBURSA', '36 MESES', '2023-11-15'
+
+EXEC VENTA.pr_insertarVenta
+	2500.00, '2023-01-20', 'Asientos con Ajuste Lumbar', 420000.80, 20, 19, 74, 'D', 8889173766665512, 12000, 
+	1000,  'INBURSA', '24 MESES', '2023-01-20'
+
+EXEC VENTA.pr_insertarVenta
+	1400.00, '2023-01-25', 'Paquete de Seguridad Urbana', 200000.75, 20, 20, 75, 'D', 9099551277777633, 12000, 
+	2000,  'INBURSA', '36 MESES', '2023-08-30'
+GO
 
 
 DISABLE TRIGGER SERVICIO.tgInsertarServicio on SERVICIO.SERVICIO
