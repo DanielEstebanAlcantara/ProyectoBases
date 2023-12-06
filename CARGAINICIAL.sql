@@ -5,7 +5,7 @@
 */
 
 
-use CONCESIONARIA
+use CONCESIONARIA14
 GO
 
 /*
@@ -1466,9 +1466,64 @@ EXECUTE COCHE.REGISTRAR_COCHE 'A3', 'Sistema de sonido premium', 'A3015', 's', '
 
 
 
+/*
 
+	Registros para VENTA.CREDITO
+*/
+--DBCC CHECKIDENT ('VENTA.CREDITO', RESEED,0);-- Resetear la PK
+SELECT * FROM CATALOGO.CREDITO
+go
+SELECT id_credito FROM VENTA.CREDITO WHERE numTarjeta =8456789032145678
+INSERT INTO VENTA.CREDITO (numTarjeta, enganche, interesMensual, deuda, banco, tipoCredito, fecha)
+VALUES 
+    (8456789032145678, 25000, 20000, 5555, 'HSBC', 3, '2023-03-01')
+	/*
+    (6834567890123654, 25000, 18750,200000, 'Banorte', 1, '2023-01-01'),
+    (9345678901234867, 10000, 3500, 50000, 'Santander', 2, '2023-02-01'),
+    (0567890123456789, 10000, 1875, 80000, 'Inbursa', 4, '2023-04-01'),
+    (1678901234567890, 50000, 4583.34,500000, 'Scotiabank', 1, '2023-05-01'),
+    (5789012345678901, 10000, 2917, 60000, 'Santander', 2, '2023-06-01'),
+    (3890123456789012, 15000, 2084, 60000, 'BBVA', 3, '2023-07-01'),
+    (2901234567890123, 35000, 7917, 345000, 'Santander', 4, '2023-08-01'),
+    (1012345678901234, 10000, 7542, 80500, 'BBVA', 1, '2023-09-01'),
+    (9234567890123456, 25000, 3542, 60000, 'HSBC', 2, '2023-10-01'),
+    (7345078901234567, 40000, 10472,337000, 'Banorte', 3, '2023-11-01'),
+    (1456789012345678, 30000, 6250, 270000, 'Inbursa', 4, '2023-12-01'),
+    (1567890123456789, 10000, 3930, 37150, 'Inbursa', 1, '2024-01-01'),
+    (2678901234567890, 40000, 16350,353000, 'HSBC', 2, '2024-02-01'),
+    (8789012345678903, 10000, 2223, 80000, 'HSBC', 3, '2024-03-01');*/
+	
+	
 
 /*
+
+	Registros para VENTA.VENTA
+*/
+INSERT INTO VENTA.VENTA (comision, fecha, Extras, CostoTotal, numEmpleado, id_Cliente, id_Coche, id_Credito)
+VALUES
+    (10000.00, '2023-01-01', 'Seguro', 225000.00, 1, 1, 82, 1)
+	/*
+    (12000.50, '2023-02-01', 'GPS', 60000.00, 2, 2, 83, NULL),
+    (9000.75, '2023-03-01', 'Asientos de Cuero', 80000.00, 3, 3, 3, NULL),
+    (8000.20, '2023-04-01', 'Paquete de Mantenimiento', 90000.00, 4, 4, 4, NULL),
+    (11000.00, '2023-05-01', 'Llantas de Invierno', 550000.00, 5, 5, 5, NULL),
+    (9500.50, '2023-06-01', 'Asistencia en Carretera', 70000.00, 6, 6, 6, NULL),
+    (10500.25, '2023-07-01', 'Quemacocos', 75000.00, 11, 7, 7, NULL),
+    (11500.75, '2023-08-01', 'Techo Solar', 380000.00, 16, 8, 8, NULL),
+    (8800.90, '2023-09-01', 'Asientos con Calefacci�n', 90500.00, 20, 9, 9, NULL),
+    (13000.00, '2023-10-01', 'Sistema de Entretenimiento', 85000.00, 1, 10, 10, NULL),
+    (7500.40, '2023-11-01', 'Sistema de Navegaci�n', 377000.00, 1, 11, 11, 11),
+    (10200.80, '2023-12-01', 'Seguro contra Robo', 300000.00, 1, 12, 12, 12),
+    (9400.30, '2024-01-01', 'Paquete de Servicios', 47150.00, 11, 13, 13, 13),
+    (7800.60, '2024-02-01', 'Asientos Deportivos', 393000.00, 11, 14, 14, 14),
+    (8500.00, '2024-03-01', 'Reproductor de DVD', 80000.00, 11, 15, 15, 15),
+    (12000.25, '2024-04-01', 'Seguro contra Colisiones', 90000.50, 16, 16, 16, NULL),
+    (9800.70, '2024-05-01', 'Sistema de Sonido Premium', 493500.00, 16, 17, 17, NULL),
+    (11000.90, '2024-06-01', 'Asientos El�ctricos', 554500.00, 11, 18, 18, NULL),
+    (8200.40, '2024-07-01', 'Pintura Personalizada', 412000.00, 20, 19, 19, NULL),
+    (10700.80, '2024-08-01', 'Cobertura Extendida', 539000.00, 1, 20, 20, NULL);
+	*/
+
 EXEC VENTA.pr_insertarVenta
 	1500.00, '2023-05-15', 'Garant�a extendida', 25000.50, 1, 1, 21, 'D', 1234567899876547, 20000, 2000, 
 	'BBVA', '24 MESES', '2023-05-15'
@@ -1560,61 +1615,8 @@ EXEC VENTA.pr_insertarVenta
 EXEC VENTA.pr_insertarVenta
 	1400.00, '2023-06-11', 'Paquete Todo Terreno', 20000.25, 3, 6, 43, 'D', 1234567899876547, 20000, 2000, 
 	'BBVA', '24 MESES', '2023-06-11'
+GO
 
-*/
-
-/*
-
-	Registros para VENTA.CREDITO
-*/
---DBCC CHECKIDENT ('VENTA.CREDITO', RESEED,0);-- Resetear la PK
-go
-INSERT INTO VENTA.CREDITO (numTarjeta, enganche, interesMensual, deuda, banco, tipoCredito, fecha)
-VALUES 
-    (8456789012345678, 10000, 2222, 70000, 'HSBC', 3, '2023-03-01'),
-    (6834567890123654, 25000, 18750,200000, 'Banorte', 1, '2023-01-01'),
-    (9345678901234867, 10000, 3500, 50000, 'Santander', 2, '2023-02-01'),
-    (0567890123456789, 10000, 1875, 80000, 'Inbursa', 4, '2023-04-01'),
-    (1678901234567890, 50000, 4583.34,500000, 'Scotiabank', 1, '2023-05-01'),
-    (5789012345678901, 10000, 2917, 60000, 'Santander', 2, '2023-06-01'),
-    (3890123456789012, 15000, 2084, 60000, 'BBVA', 3, '2023-07-01'),
-    (2901234567890123, 35000, 7917, 345000, 'Santander', 4, '2023-08-01'),
-    (1012345678901234, 10000, 7542, 80500, 'BBVA', 1, '2023-09-01'),
-    (9234567890123456, 25000, 3542, 60000, 'HSBC', 2, '2023-10-01'),
-    (7345078901234567, 40000, 10472,337000, 'Banorte', 3, '2023-11-01'),
-    (1456789012345678, 30000, 6250, 270000, 'Inbursa', 4, '2023-12-01'),
-    (1567890123456789, 10000, 3930, 37150, 'Inbursa', 1, '2024-01-01'),
-    (2678901234567890, 40000, 16350,353000, 'HSBC', 2, '2024-02-01'),
-    (8789012345678903, 10000, 2223, 80000, 'HSBC', 3, '2024-03-01');
-	
-	
-
-/*
-
-	Registros para VENTA.VENTA
-*/
-INSERT INTO VENTA.VENTA (comision, fecha, Extras, CostoTotal, numEmpleado, id_Cliente, id_Coche, id_Credito)
-VALUES
-    (10000.00, '2023-01-01', 'Seguro', 225000.00, 1, 1, 1, 1),
-    (12000.50, '2023-02-01', 'GPS', 60000.00, 2, 2, 2, 2),
-    (9000.75, '2023-03-01', 'Asientos de Cuero', 80000.00, 3, 3, 3, 3),
-    (8000.20, '2023-04-01', 'Paquete de Mantenimiento', 90000.00, 4, 4, 4, 4),
-    (11000.00, '2023-05-01', 'Llantas de Invierno', 550000.00, 5, 5, 5, 5),
-    (9500.50, '2023-06-01', 'Asistencia en Carretera', 70000.00, 6, 6, 6, 6),
-    (10500.25, '2023-07-01', 'Quemacocos', 75000.00, 11, 7, 7, 7),
-    (11500.75, '2023-08-01', 'Techo Solar', 380000.00, 16, 8, 8, 8),
-    (8800.90, '2023-09-01', 'Asientos con Calefacci�n', 90500.00, 20, 9, 9, 9),
-    (13000.00, '2023-10-01', 'Sistema de Entretenimiento', 85000.00, 1, 10, 10, 10),
-    (7500.40, '2023-11-01', 'Sistema de Navegaci�n', 377000.00, 1, 11, 11, 11),
-    (10200.80, '2023-12-01', 'Seguro contra Robo', 300000.00, 1, 12, 12, 12),
-    (9400.30, '2024-01-01', 'Paquete de Servicios', 47150.00, 11, 13, 13, 13),
-    (7800.60, '2024-02-01', 'Asientos Deportivos', 393000.00, 11, 14, 14, 14),
-    (8500.00, '2024-03-01', 'Reproductor de DVD', 80000.00, 11, 15, 15, 15),
-    (12000.25, '2024-04-01', 'Seguro contra Colisiones', 90000.50, 16, 16, 16, NULL),
-    (9800.70, '2024-05-01', 'Sistema de Sonido Premium', 493500.00, 16, 17, 17, NULL),
-    (11000.90, '2024-06-01', 'Asientos El�ctricos', 554500.00, 11, 18, 18, NULL),
-    (8200.40, '2024-07-01', 'Pintura Personalizada', 412000.00, 20, 19, 19, NULL),
-    (10700.80, '2024-08-01', 'Cobertura Extendida', 539000.00, 1, 20, 20, NULL);
 
 
 DISABLE TRIGGER SERVICIO.tgInsertarServicio on SERVICIO.SERVICIO
@@ -1661,7 +1663,6 @@ VALUES
 /*
 	Registros para tabla SERVICIO.REVISION
 */
-
 DISABLE TRIGGER SERVICIO.tgInserRevision on SERVICIO.REVISION
 INSERT INTO SERVICIO.REVISION (id_Servicio, fechaPlaneacion, fechaRealizacion, id_Revision, numEmpleado)
 VALUES
@@ -1684,6 +1685,15 @@ VALUES
     ('Transmision Manual y Embrague', 18),
     ('Mantenimiento de Transmision Automatica', 21);
 GO
+
+
+ENABLE TRIGGER SERVICIO.tgInsertarServicio on SERVICIO.SERVICIO
+GO
+ENABLE TRIGGER SERVICIO.tgInserRevision on SERVICIO.REVISION
+/*
+Meter servicios con EXEC
+*/
+
 
 
 
