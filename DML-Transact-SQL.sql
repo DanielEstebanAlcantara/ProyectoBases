@@ -697,18 +697,17 @@ END;
 Procedimiento para SERVICIOS
 */
 go
-CREATE OR ALTER PROCEDURE REGISTRAR_SERVICIO
+CREATE OR ALTER PROCEDURE SERVICIO.REGISTRAR_SERVICIO
     -- Parametros 
     @P_id_Coche smallint,
     @P_id_Cliente smallint,
-	@P_tipoServicio char,
-	@P_tipoEmpleado char,
+	@P_tipoServicio char(1),
+	@P_numEmpleado smallint,
 	@P_fecha date,
 	@P_hora datetime,
 	@P_motivo varchar(60),
 	@P_costos money,
-	@P_estatus char,
-	@P_numEmpleado smallint,
+	@P_estatus char(1),
 	@P_fechaPlaneacion datetime,
 	@P_fechaRealizacion datetime
 
@@ -722,6 +721,9 @@ BEGIN
 	DECLARE @V_idRevision smallint;--Variables para guardar el id del catalogo que coincida con el motivo
 	DECLARE @V_idReparacion smallint;
 	DECLARE @V_id_Servicio smallint;--Variable de receteo para el id_Servicio
+	DECLARE @V_tipoEmpleado varchar(1);
+	DECLARE @V_nuevoServicio SMALLINT;
+	DECLARE @V_cantidad_servicios INT;
 
 	IF @P_tipoServicio = 'C'--Obtener id del catalogo que coinida con el motivo
 		SET @V_idRevision = (SELECT MAX(id_Revision) from CATALOGO.REVISION
@@ -729,6 +731,17 @@ BEGIN
 	ELSE
 		SET @V_idReparacion = (SELECT MAX(id_Reparacion) from CATALOGO.REPARACION
 		WHERE  descripcion LIKE '%' + @P_motivo + '%')
+	
+	SET @V_tipoEmpleado = (SELECT tipoEmpleado FROM EMPLEADO.EMPLEADO WHERE numEmpleado = @P_numEmpleado);
+
+	SET @V_cantidad_servicios = (SELECT COUNT(id_Servicio) FROM SERVICIO.SERVICIO 
+								WHERE id_Cliente = @P_id_Cliente )
+
+	IF @V_cantidad_servicios >= 5 AND @V_idReparacion = 4
+	BEGIN
+		SET @P_costos = 0;
+		SELECT 'Tu cambio de aceite es gratis'
+	END 
 
 	-- recetear la PK de servicio.servicio
 	--SET @V_id_Servicio = (SELECT MAX(id_Servicio) FROM SERVICIO.SERVICIO);
@@ -739,7 +752,8 @@ BEGIN
 
     -- Si el tiposervicio es C y el empleado es M entonces insertar en SERVICIO.SERVICIO y especificar numEmpleado
 			--insertar en SERVICIO.REVISION y poner numEmpleado como NULL
-    IF @P_tipoServicio = 'C' and @P_tipoEmpleado = 'M' 
+	BEGIN TRANSACTION nuevoServicio
+    IF @P_tipoServicio = 'C' and @V_tipoEmpleado = 'M' 
 	BEGIN 
 		INSERT INTO SERVICIO.SERVICIO (id_Coche, id_Cliente, tipoServicio, fecha, hora, motivo, costos, estatus, numEmpleado)
 		VALUES (@P_id_Coche, @P_id_Cliente, @P_tipoServicio, @P_fecha, @P_hora, @P_motivo, @P_costos, @P_estatus, @P_numEmpleado);
@@ -750,7 +764,7 @@ BEGIN
 	END
 	-- Si el tipoServicio es C y el empleado es T entonces primero insertar en SERVICIO.SERVICIO con numEmpleado NULL y luego
 			--insertar en SERVICIO.REVISION y especificar el numEmpleado
-	ELSE IF @P_tipoServicio = 'C' and @P_tipoEmpleado = 'T' 
+	ELSE IF @P_tipoServicio = 'C' and @V_tipoEmpleado = 'T' 
 	BEGIN
 		INSERT INTO SERVICIO.SERVICIO (id_Coche, id_Cliente, tipoServicio, fecha, hora, motivo, costos, estatus, numEmpleado)
 		VALUES (@P_id_Coche, @P_id_Cliente, @P_tipoServicio, @P_fecha, @P_hora, @P_motivo, @P_costos, @P_estatus, NULL);
@@ -761,7 +775,7 @@ BEGIN
 	END
 	--Si el tipoServicio es R entonces insertar en SERVICIO.SERVICIO especificando el numEmpleado
 			--y despues insertar en SERVICIO.REPARACION
-	ELSE IF @P_tipoServicio = 'R' and @P_tipoEmpleado = 'M' 
+	ELSE IF @P_tipoServicio = 'R' and @V_tipoEmpleado = 'M' 
 	BEGIN 
 		INSERT INTO SERVICIO.SERVICIO (id_Coche, id_Cliente, tipoServicio, fecha, hora, motivo, costos, estatus, numEmpleado)
 		VALUES (@P_id_Coche, @P_id_Cliente, @P_tipoServicio, @P_fecha, @P_hora, @P_motivo, @P_costos, @P_estatus, @P_numEmpleado);
@@ -772,6 +786,12 @@ BEGIN
 	END
 	ELSE 
 		SELECT 'El tipo de empleado no puede realizar ese servicio'
+	
+	SET @V_nuevoServicio = ISNULL((SELECT MAX(id_Servicio) FROM SERVICIO.SERVICIO),0);
+			IF @V_id_Servicio < @V_nuevoServicio 
+				COMMIT TRANSACTION nuevoServicio
+			ELSE IF @V_id_Servicio = @V_nuevoServicio 
+				ROLLBACK TRANSACTION nuevoServicio
 
 
 END
